@@ -49,7 +49,6 @@ WrapperElement.prototype.addClass = function(className)
 
 WrapperElement.prototype.prepend = function(item)
 {
-    this.element.appendChild(item);
     this.element.insertBefore(item, this.element.childNodes[0]);
 };
 
