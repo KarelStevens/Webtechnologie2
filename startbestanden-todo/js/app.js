@@ -7,18 +7,19 @@ $("#add-item-text").keyup(function(e){ 					// make sure we can detect a keyup e
     if(e.which === 13)
     {
         // this is the ENTER key with code 13
-        var todoText = $(this).val(this.value);
-        //var todoText = $("#add-item-text").val();
+        if (this.value !== "") {
+            var todoText = $(this).val(this.value);
 
-        var li = document.createElement("li");			// create a new list item in memory
-        li.innerHTML = todoText;						// put some text inside of the <li> tags
-        li.className = "prior-high";					// give it the class prior-high by default
+            var li = document.createElement("li");			// create a new list item in memory
+            li.innerHTML = todoText;						// put some text inside of the <li> tags
+            li.className = "prior-high";					// give it the class prior-high by default
 
-        this.value = $(this).val(""); 								// clear the input field by setting the value to ""
+            $(this).val(""); 								// clear the input field by setting the value to ""
 
-        $("#todo-list").prepend(li); 					// add the newly created list item to the ul#todo-list
-        $(li).click(function(){							// make sure that we can click on the newly created list item
-            $(this).toggleClass("done"); 				// toggle the class done when clicking on the element
-        });
+            $("#todo-list").prepend(li); 					// add the newly created list item to the ul#todo-list
+            $(li).click(function(){							// make sure that we can click on the newly created list item
+                $(this).toggleClass("done"); 				// toggle the class done when clicking on the element
+            });
+        }
     }
 });

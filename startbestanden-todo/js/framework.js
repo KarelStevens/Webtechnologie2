@@ -8,7 +8,7 @@ var WrapperElement = function(element)
     this.element = element;
 
     // this allows us to see if a selection contains one or more elements
-    if(element[0] != undefined)
+    if(element[0] !== undefined)
     {
         this.isArray = true;
     }
@@ -50,6 +50,7 @@ WrapperElement.prototype.addClass = function(className)
 WrapperElement.prototype.prepend = function(item)
 {
     this.element.appendChild(item);
+    this.element.insertBefore(item, this.element.childNodes[0]);
 };
 
 WrapperElement.prototype.keyup = function(action){
@@ -86,6 +87,7 @@ WrapperElement.prototype.click = function(action)
 
 WrapperElement.prototype.val = function(value)
 {
+    this.element.value = value;
     return value;
 };
 
