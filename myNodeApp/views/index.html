@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+    <head>
+    <title>IMD Frigo</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../public/stylesheets/style.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h1 class="text-center" id="frigotitle">IMD Frigo</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-xs-12 col-md-offset-4 col-sm-offset-3 col-xs-offset-0">
+                    <ul id="products">
+
+
+
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <form action="" class="form-inline">
+                        <input type="text" id="newproduct" class="form-control">
+                        <input type="number" id="newamount" class="form-control">
+                        <input type="button" id="btn" value="Send" class="btn btn-default">
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+        <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+        <script>
+            $(document).ready(function() {
+                var call = {
+                    url:"/product",
+                    type:"GET",
+                    success: function(data){
+                        $.each(data, function(index,value){
+                            $('#products').append('<li><span>'+value.name+'</span>: <span class="amount" id="'+value._id+'">'+value.amount+'</span><button onclick="myFunctionPlus(\''+value._id+'\')" class="btn btn-default">+</button><button onclick="myFunctionMin(\''+value._id+'\')" class="btn btn-default">-</button>'+'</li>');
+                            //console.log(value._id);
+                        });
+
+                    }
+
+                }
+
+                $.ajax(call)
+            });
+
+            function myFunctionPlus(id) {
+                var newAmount = parseInt($('#'+id).text()) + 1;
+                var call = {
+                url:"/product/"+id,
+                type: "PUT",
+                data: JSON.stringify({
+                amount: newAmount
+                }),
+                contentType: "application/json",
+                dataType: "json",
+                success: function(data){
+                    $('#'+id).text(data.amount);
+                }
+            }
+            $.ajax(call);
+            };
+
+            function myFunctionMin(id) {
+                var newAmount = parseInt($('#'+id).text()) - 1;
+            var call = {
+                url:"/product/"+id,
+                type: "PUT",
+                data: JSON.stringify({
+                amount: newAmount
+                }),
+                contentType: "application/json",
+                dataType: "json",
+                success: function(data){
+                    $('#'+id).text(data.amount);
+                }
+            }
+            $.ajax(call);
+            };
+            $('#btn').on('click', function() {
+                    var call = {
+                        url:"/product",
+                        type: "POST",
+                        data: JSON.stringify({
+                            name: $('#newproduct').val(),
+                            amount: $('#newamount').val()
+                        }),
+                        contentType: "application/json",
+                        dataType: "json",
+                        success: function(data){
+                            $('#products').append('<li><span>'+data.name+'</span>: <span class="amount">'+data.amount+'</span>'+'</li>');
+                        }
+                    }
+                    $.ajax(call);
+                });
+
+
+            /*$("#button").click(function(){
+                $.get("/product", function(data, status){
+                    alert("Data: " + data + "\nStatus: " + status);
+                });
+            });*/
+           /*$(document).ready(function() {
+                var socket = io();
+
+                $('#btn').on('click', function() {
+                    socket.emit('message', $("#message").val());
+                });
+
+                socket.on('startMessages', function(messages) {
+                    $('#products').val();
+                    var length = messages.length;
+                    for(var i = 0; i < messages.length; i++) {
+                        $('#products').append('<li>'+messages[i].message+'</li>');
+                    }
+                });
+
+                socket.on('update', function(update) {
+                    console.log('update', update);
+                    $('#products').append('<li>'+update.message+'</li>');
+                });
+            });*/
+        </script>
+    </body>
+</html>

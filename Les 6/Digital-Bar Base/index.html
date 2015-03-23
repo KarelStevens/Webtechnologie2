@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html ng-app="imdApp">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Digital Bar</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Load theme styles -->
+        <link rel="stylesheet" href="assets/bower_components/fontawesome/css/font-awesome.css" />
+        <link rel="stylesheet" href="assets/bower_components/normalize.css/normalize.css" />
+
+        <link rel="stylesheet" href="assets/css/styles.css" />
+    </head>
+
+    <body>
+        <div class="container" ng-controller="myController" ng-init="init()">
+            <h1>Digital Bar</h1>
+
+            <div class="center">
+                <label for="name">Tell me, what is your name?</label>
+                <input type="text" name="name" ng-model="myName"/>
+                <p ng-if="myName">Hello {{myName}}, order some drinks!</p>
+            </div>
+
+            <div ng-if="myName" class="productsContainer">
+
+                <div class="orderAdd">
+                    <input type="text" placeholder="Zoek een product" ng-model="productSearch"/>
+
+                    <ul class="productList" >
+                        <li ng-repeat="drink in drinks | filter:productSearch">
+                            <span class="name">{{drink.name}}</span>
+                            <small class="quantity">{{drink.qty || '0'}}</small>
+                            <button ng-click="drink.qty = drink.qty + 1">+</button>
+                            <button ng-click="drink.qty = drink.qty - 1">-</button>
+                        </li>
+                    </ul>
+                    <button class="action">Send your order</button>
+                    <p ng-if="status.orderSent">Your order has been added!</p>
+                </div>
+
+
+                <div class="addProduct">
+                    <label>Nieuw Product</label>
+                    <div class="input-wrapper">
+                        <input type="text" placeholder="Productnaam" ng-model="newDrink.name"/>
+                    </div>
+                    <button class="action" ng-click="addDrink()">Add product</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCRIPTS ///////////////////////////////////////////////////// -->
+
+        <!-- ANGULAR -->
+        <script src="assets/bower_components/jquery/dist/jquery.js"></script>
+        <script src="assets/bower_components/lodash/lodash.js"></script>
+        <script src="assets/bower_components/angular/angular.js"></script>
+
+        <!-- LOCAL SCRIPT-->
+        <script>
+            // Insert Angular magic here
+
+            // API URL: 'http://imd.district01.be'
+            // PRODUCTS: 'http://imd.district01.be/product' (PUT - GET)
+            // ORDER: 'http://imd.district01.be/order' (POST)
+            var app = angular.module('imdApp', []);
+
+            app.controller('myController', function($scope, $http){
+
+                $scope.myName = "test";
+                $scope.newDrink = { name: undefined};
+                $scope.newOrder = { username: $scope.myName, products : undefined };
+
+                $scope.init = function init() {
+                    $scope.getAll();
+                };
+
+                $scope.getAll = function getAll() {
+                    $http.get('http://imd.district01.be/product').
+                    success(function(data) {
+                      $scope.drinks = data;
+                    }).
+                    error(function(data) {
+                      console.log("boooo getAll");
+                    });
+                };
+
+                $scope.addDrink = function addDrink() {
+                    $http.post('http://imd.district01.be/product', $scope.newDrink ).
+                    success(function(data) {
+                        $scope.getAll();
+                        console.log("hoera");
+                    }).
+                    error(function(data) {
+                      console.log("boooo");
+                    });
+                };
+
+                 $scope.addOrder = function addOrder() {
+                    $http.post('http://imd.district01.be/order', $scope.newOrder).
+                    success(function(data) {
+                        console.log("hoera order");
+                    }).
+                    error(function(data) {
+                      console.log("boooo order");
+                    });
+                };
+
+            });
+
+        </script>
+
+    </body>
+
+</html>
