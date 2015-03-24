@@ -38,10 +38,11 @@
                             <button ng-click="drink.qty = drink.qty - 1">-</button>
                         </li>
                     </ul>
-                    <button class="action">Send your order</button>
+                    <button class="action" ng-click="addOrder()">Send your order</button>
                     <p ng-if="status.orderSent">Your order has been added!</p>
                 </div>
 
+                <p ng-if="orderFeedback">{{orderFeedback}}</p>
 
                 <div class="addProduct">
                     <label>Nieuw Product</label>
@@ -71,9 +72,10 @@
 
             app.controller('myController', function($scope, $http){
 
-                $scope.myName = "test";
+                $scope.myName = "Karel";
                 $scope.newDrink = { name: undefined};
-                $scope.newOrder = { username: $scope.myName, products : undefined };
+                $scope.newOrder = { username: $scope.myName, products : [] };
+                $scope.orderFeedback = undefined;
 
                 $scope.init = function init() {
                     $scope.getAll();
@@ -101,12 +103,25 @@
                 };
 
                  $scope.addOrder = function addOrder() {
+
+                    angular.forEach($scope.drinks, function(drink) {
+                        if (drink.qty > 0) {
+                            $scope.newOrder.products.push({_id: drink._id, name: drink.name, quantity: drink.qty});
+                        };
+                    });
+
                     $http.post('http://imd.district01.be/order', $scope.newOrder).
                     success(function(data) {
-                        console.log("hoera order");
+                        console.log("Your order:");
+                        angular.forEach($scope.newOrder.products, function(drink) {
+                            console.log("{_id: " + drink._id + ", name: " + drink.name + ", quantity: " + drink.quantity + "}");
+                        });
+                        $scope.newOrder.products = [];
+                        $scope.orderFeedback = "Uw order is geplaatst!";
                     }).
                     error(function(data) {
-                      console.log("boooo order");
+                        console.log("boooo order");
+                        $scope.orderFeedback = "Er is een fout gebeurd!";
                     });
                 };
 
