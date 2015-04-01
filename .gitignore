@@ -46,4 +46,4 @@ Temporary Items
 **/node_modules
 
 # bower components
-**/assets/bower-components
+**/assets/bower_components
