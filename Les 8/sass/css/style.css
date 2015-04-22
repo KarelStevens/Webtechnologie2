@@ -1,0 +1,30 @@
+body {
+  background-color: #32A8EF;
+  background-image: -webkit-linear-gradient(#32A8EF, #0e71ad);
+  background-image: linear-gradient(#32A8EF, #0e71ad); }
+
+.nav {
+  width: 100%;
+  background-color: #32A8EF;
+  padding: 1em; }
+  .nav__item, .nav__item--current {
+    display: block;
+    width: 33.33%;
+    float: left; }
+  .nav__item--current {
+    color: red; }
+
+.blog {
+  font-family: "Helvetica"; }
+  .blog .blog__article-title {
+    color: #0e71ad;
+    font-size: 32px;
+    font-size: 2rem; }
+  .blog__article-body {
+    -webkit-column-count: 3;
+    /* Chrome, Safari, Opera */
+    -moz-column-count: 3;
+    /* Firefox */
+    column-count: 3; }
+
+/*# sourceMappingURL=style.css.map */

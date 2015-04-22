@@ -1,0 +1,4 @@
+body
+{
+	@include linear-gradient($color1, darken($color1, 20%));
+}

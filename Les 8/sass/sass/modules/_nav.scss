@@ -1,0 +1,19 @@
+.nav
+{
+    width: 100%;
+    background-color: $color1;
+    padding: 1em;
+
+    &__item
+    {
+        display: block;
+        width: 33.33%;
+        float: left;
+    }
+
+    &__item--current
+    {
+        @extend .nav__item;
+        color: red;
+    }
+}

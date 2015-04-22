@@ -1,0 +1,12 @@
+@mixin columns($cols)
+{
+	-webkit-column-count: $cols; /* Chrome, Safari, Opera */
+    -moz-column-count: $cols; /* Firefox */
+    column-count: $cols;
+}
+
+@mixin rem($rem)
+{
+	font-size: $rem*16+px;
+	font-size: $rem+rem;
+}

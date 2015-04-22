@@ -1,0 +1,20 @@
+html
+{
+	
+}
+
+.blog
+{
+	font-family: "Helvetica";
+
+	.blog__article-title
+	{
+		color: darken($color1, 20%);
+		@include rem(2);
+	}
+
+	&__article-body
+	{
+		@include columns(3);
+	}
+}

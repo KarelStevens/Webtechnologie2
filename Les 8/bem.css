@@ -1,0 +1,9 @@
+
+<!-- BEM => Block Element Modifier
+
+- #text, #page1, ... niet omschrijvend genoeg dus niet gebruiken als id of klassenamen
+- zo weinig mogelijk ID's => id is uniek, maar 1x bruikbaar => niet herbruikbaar
+  => id volgt niet de volgorde (div id="id1" class="class1" => styling van ID telt)
+
+-->
+
