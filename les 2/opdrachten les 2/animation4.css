@@ -1,0 +1,97 @@
+body {
+}
+
+#container {
+    width:600px;
+    height:800px;
+    background-color:red;
+}
+
+#circleBig {
+    height:100px;
+    width:100px;
+    border-radius:50%;
+    background-color:orange;
+    margin-left:auto;
+    margin-right:auto;
+
+}
+
+#smallcircles {
+    width:55%;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:700px;
+}
+
+#circle1 {
+    background-color:black;
+}
+
+#circle2 {
+    background-color:yellow;
+}
+
+#circle3 {
+    background-color:red;
+}
+
+#smallcircles ul li{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    float:left;
+    margin:15px;
+    opacity: 0;
+}
+
+/*----------animations ------------------------------- */
+
+.bounce {
+    -webkit-animation: circleBounce 1.5s;
+    -webkit-animation-fill-mode:forwards;
+}
+
+@-webkit-keyframes circleBounce {
+    0% { -webkit-transform: translateY(300px); opacity:0;}
+    60% { -webkit-transform: translateY(100px); opacity:1;}
+    90% { -webkit-transform: translateY(130px); opacity:1;}
+    100% { -webkit-transform: translateY(-150px); opacity:1;}
+}
+
+.background {
+    -webkit-animation: changeBackground 1s;
+    -webkit-animation-delay: 1s; /* Chrome, Safari, Opera */
+    -webkit-animation-fill-mode:forwards;
+}
+
+@-webkit-keyframes changeBackground {
+    0% { -webkit-transform:;background-color:red;}
+    100% { -webkit-transform:;background-color:orange;}
+}
+
+.inside {
+    -webkit-animation: bounceSmall 1.5s;
+    -webkit-animation-fill-mode:forwards;
+    -webkit-animation-delay: 1.5s; /* Chrome, Safari, Opera */
+}
+
+@-webkit-keyframes bounceSmall {
+    0% { -webkit-transform: translateY(-300px); opacity:0;}
+    35% { -webkit-transform: translateY(-550px); opacity:1;}
+    65% { -webkit-transform: translateY(-500px); opacity:1;}
+    100% { -webkit-transform: translateY(-510px); opacity:1;}
+}
+
+.outside {
+    -webkit-animation: bounceBig 1.5s;
+    -webkit-animation-fill-mode:forwards;
+    -webkit-animation-delay: 1.5s; /* Chrome, Safari, Opera */
+}
+
+@-webkit-keyframes bounceBig {
+    0% { -webkit-transform: translateY(-300px); opacity:0;}
+    35% { -webkit-transform: translateY(-555px); opacity:1;}
+    65% { -webkit-transform: translateY(-490px); opacity:1;}
+    100% { -webkit-transform: translateY(-510px); opacity:1;}
+}
