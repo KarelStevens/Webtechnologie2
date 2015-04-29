@@ -1,5 +1,7 @@
 # Webtech 2 #
 ## Les 1 - GIT ##
+In deze les kregen we een introductie in GIT
+
 ## Les 2 - CSS Animations ##
 In deze les hebben we gezien hoe we met CSS transition en transformations gemakkelijk en snel animaties kunnen maken.
 
@@ -11,7 +13,7 @@ Een transitie MOET getriggerd worden door het toevoegen van een klasse of een ps
 “using linear to time your animations is like using comicsans
 on your portfolio"
 
-nadelen:
+####nadelen:
 - kan slecht zijn voor performance => door sommige transitioning properties moet de browser per frame de stijlen herberekenen.
 
 ### Transformations
@@ -37,7 +39,7 @@ Een transformatie kan automatisch gestart worden.
 - RotateZ(x): roteren op de z-as.
 - Perspective(): Visueel effect => hoe hoger de ingegeven waarde, hoe verder het element van de gebruiker weg lijkt te zijn.
 
-### Opdrachten:
+### Opdracht les 2:
 4 animaties maken.
 
 ## Les 3 - Eigen JavaScript Framework (advanced JS) ##
@@ -47,6 +49,9 @@ In lab 3 leren we hoe een framework zoals jquery is opgebouwd uit javascript.
 Jquery is een zeer handig framework die het aantal lijnen code die wij moeten schrijven verlaagd. Maar voor kleine applicaties
 is het laden van een eigen mini-framework veel sneller dan een volledig framework zoals jquery (die zeer veel ongebruikte code zou hebben).
 
+### opdracht les 3:
+Het aanvullen van de startbestanden van een to-do app.
+
 ## Les 4 - Building an app with APIs ##
 In deze les hebben geleerd hoe we met publieke API's kunnen werken van andere organisaties, hoe Localstorage werkt, ..
 vb. stad antwerpen de API om alle openbare toiletten op te halen, of alle nmbs stations in belgie, ...
@@ -54,7 +59,8 @@ vb. stad antwerpen de API om alle openbare toiletten op te halen, of alle nmbs s
 API's zijn sets van functies die onder andere toelaten om data op te halen en weer te geven. Om de data op te vragen gebruiken wij het json formaat.
 
 ### Opdracht les 4
-Weerap die zijn data ophaalt via de API forecast.io en gebruikt maakt van geolocation.
+Weerapplicatie die zijn data ophaalt via de API forecast.io en gebruikt maakt van geolocation.
+Om de weervoorspellingen te verkrijgen van uw huidige locatie.
 
 ## Les 5 - Realtime apps met Node.js en web sockets ##
 In deze les kwamen er 2 werknemers van District01 gastspreken over Node.js
@@ -75,6 +81,8 @@ We hebben dan in de les ook gebruik gemaakt van Nodejs en socket.io om at realti
 ### web sockets
 web sockets maken gebruik van een server om communicatie te voorzien tussen server en clients.
 
+Opdracht les 5:
+IMDquestions: een chatroom maken waarbij mensen kunnen vragen stellen die at-realtime wordt geupdate.
 
 ## Les 6 - Angular.js ##
 Angularjs is het framework van Google, die zeer sterk is in SPA's.
