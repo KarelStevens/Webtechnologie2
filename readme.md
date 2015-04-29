@@ -2,6 +2,20 @@
 ## Les 1 - GIT ##
 In deze les kregen we een introductie in GIT
 
+### SourceTree
+A free Git & Mercurial client for Windows or Mac.
+=> wij gebruiken sourceTree als GUI voor onze projecten en portfolio.
+
+### Git basic commands
+#### Commit 
+Commit past je veranderingen lokaal toe (nog nie op de remote repository)
+
+#### Push
+Alle veranderingen in de commits doorsturen naar de remote repository
+
+#### Pull
+Alle veranderingen uit de remote repository ophalen en toepassen op je lokale bestanden.
+
 ## Les 2 - CSS Animations ##
 In deze les hebben we gezien hoe we met CSS transition en transformations gemakkelijk en snel animaties kunnen maken.
 
@@ -40,7 +54,7 @@ Een transformatie kan automatisch gestart worden.
 - Perspective(): Visueel effect => hoe hoger de ingegeven waarde, hoe verder het element van de gebruiker weg lijkt te zijn.
 
 ### Opdracht les 2:
-4 animaties maken.
+4 animaties maken: zie cursus
 
 ## Les 3 - Eigen JavaScript Framework (advanced JS) ##
 In lab 3 leren we hoe een framework zoals jquery is opgebouwd uit javascript.
@@ -58,9 +72,19 @@ vb. stad antwerpen de API om alle openbare toiletten op te halen, of alle nmbs s
 
 API's zijn sets van functies die onder andere toelaten om data op te halen en weer te geven. Om de data op te vragen gebruiken wij het json formaat.
 
+### Localstorage
+Wanneer organisaties het toelaten om te werken met hun API is het dikwijls het geval dat je een account moet aanmaken en er een maximum staat
+op het aantal gratis handelingen die je per dag mag uitvoeren. vb max 100 GETS per dag. Zodat het server niet overbelast geraakt.
+Tijdens het testen kan het vervelend zijn dat je ineens geen handelingen meer mag uitvoeren. Daarom kan je Localstorage gebruiken.
+
+Localstorage laat webpaginas toe om data lokaal op te slaan. Hierdoor moet je niet telkens een GET uitvoeren op de API.
+=> hierdoor worden de paginas sneller geladen (geen GET uitvoeren op de API, want je hebt de data al) en verbruik je minder handelingen op je API.
+
+
 ### Opdracht les 4
 Weerapplicatie die zijn data ophaalt via de API forecast.io en gebruikt maakt van geolocation.
 Om de weervoorspellingen te verkrijgen van uw huidige locatie.
+Extra: Localstorage gebruiken om je data op te slaan.
 
 ## Les 5 - Realtime apps met Node.js en web sockets ##
 In deze les kwamen er 2 werknemers van District01 gastspreken over Node.js
@@ -83,6 +107,9 @@ web sockets maken gebruik van een server om communicatie te voorzien tussen serv
 
 Opdracht les 5:
 IMDquestions: een chatroom maken waarbij mensen kunnen vragen stellen die at-realtime wordt geupdate.
+
+nog uit te voeren oplossing voor het probleem: wanneer er mensen van een andere laptop connecteren op de chatroom worden hun antwoorden niet doorgestuurd
+want hun localhost is niet dezelfde als mijn localhost. => IP adressen opvragen en gebruiken ipv handelingen op localhost.
 
 ## Les 6 - Angular.js ##
 Angularjs is het framework van Google, die zeer sterk is in SPA's.
