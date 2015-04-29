@@ -1,0 +1,97 @@
+<html>
+<head>
+    <title>IMD questions</title>
+    <style>
+        div {
+            margin:0px;
+        }
+
+        #chat {
+            height: 500px;
+            width:400px;
+        }
+
+/*        .username {
+            font-weight: bold;
+            color: gray;
+            margin: 0px;
+            margin-top: 5px;
+        }*/
+
+        .blue {
+            margin:0px;
+            width: 400px;
+            padding: 8px;
+            border: 1px solid blue;
+            text-align: right;
+        }
+
+        .lightblue {
+            margin:0px;
+            width: 400px;
+            padding: 8px;
+            border: 1px solid lightblue;
+        }
+
+        .messagetotal {
+            padding-bottom:10px;
+            width: 400px;
+        }
+
+        .sameuser {
+            font-weight: bold;
+            color: gray;
+            float:left;
+            margin-left:13px;
+        }
+
+        .notsameuser{
+            font-weight: bold;
+            color: gray;
+            float:right;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>IMD questions</h1>
+    <div id="chat"></div>
+    <form id="send-message">
+        <input type="text" size="10" id="username" name="username">
+        <input type="text" size="35" id="message" name="message">
+        <input type="submit">
+    </form>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script>
+        jQuery(function($) {
+            var socket = io.connect();
+
+            $('#send-message').submit(function(e){
+                var $username = $('#username').val();
+                $("#username").prop('disabled', true);
+                var $message = $('#message').val();
+                var $post = { username: $username, message:$message }
+
+                e.preventDefault();
+                socket.emit('sendmessage', $post);
+                $('#message').val('');
+            });
+
+            socket.on('newmessage', function(data) {
+                var $sameuser = "notsameuser";
+                var $usercolor = "blue";
+
+                if (data.username == $('#username').val()) {
+                    $sameuser = "sameuser";
+                    $usercolor = "lightblue";
+                }
+
+                $('#chat').append("<div class='messagetotal'><label class='" + $sameuser + "'>" + data.username + "</label><br><div class='" + $usercolor + "'>" + data.message + "</div></div>");
+            });
+        });
+    </script>
+</body>
+</html>
